@@ -1,0 +1,26 @@
+FROM ubuntu:20.04
+ENV JAVA_HOME=/opt/jdk-11
+ENV TOMCAT_HOME=/opt/apache-tomcat-9.0.62
+ENV PATH=${PATH}:${JAVA_HOME}/bin:${TOMCAT_HOME}/bin
+
+RUN mkdir -p /opt
+WORKDIR /opt
+
+# Below downloading jdk-11.
+ADD https://download.java.net/openjdk/jdk11/ri/openjdk-11+28_linux-x64_bin.tar.gz .
+RUN tar -xzvf openjdk-11+28_linux-x64_bin.tar.gz
+RUN rm openjdk-11+28_linux-x64_bin.tar.gz
+
+# Below downloading jtomcat.
+ADD https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.62/bin/apache-tomcat-9.0.62.tar.gz .
+RUN tar -xzvf apache-tomcat-9.0.62.tar.gz
+RUN rm apache-tomcat-9.0.62.tar.gz
+
+CMD ["startup.sh && tail -f /dev/null"]
+
+
+
+
+
+
+
