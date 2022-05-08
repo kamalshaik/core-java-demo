@@ -1,0 +1,11 @@
+FROM ubuntu:20.04
+RUN apt update -y
+RUN apt install -y openjdk-11-jdk
+# below is for creating folders in docker image.
+RUN mkdir -p u01/applications/
+
+# below is for copying the built jar file from linux local to above created path in docker image.
+COPY target/core-java-demo-1.0-SNAPSHOT.jar /u01/applications/
+
+# below is for executing java class which is in docker image jar file.
+CMD java -cp /u01/applications/core-java-demo-1.0-SNAPSHOT.jar com.skh.App
