@@ -1,2 +1,4 @@
 FROM ubuntu:20.04
-CMD [ "bash","-c", "echo $HOME" ]
+COPY run.sh .
+RUN chmod u+x run.sh
+CMD [ "./run.sh" ]
